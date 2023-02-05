@@ -1,49 +1,56 @@
-// let hello = "Hello world";
-// alert(hello);
-// let number = 4+3;
-// alert(number);
-// let greeting = "こんにちは";
-// let name = "はな";
-// alert(greeting + name);
+// じゃんけんの手を入力してもらうプロンプトランを生成
+let user_hand = prompt('じゃんけんの手をグー、チョキ、パーから選んでください。');
+// じゃんけんの手をランダムに作成する関数を呼び出す
+let js_hand = getJShand();
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数を呼び出し、結果をjudgeに入れる
+let judge = winLose(user_hand, js_hand);
+// 結果を表示する
+alert('あなたの選んだ手は' + user_hand + 'です。JavaScriptの選んだ手は' + js_hand + 'です。結果は' + judge + 'です。');
 
+// ランダムでじゃんけんの手を作成する関数
+function getJShand(){
+  let js_hand_num = Math.floor(Math.random() * 3);
+  let hand_name;
 
+  if(js_hand_num == 0){
+    hand_name = "グー";
+  } else if(js_hand_num == 1){
+    hand_name = "チョキ";
+  }else if(js_hand_num ==2){
+    hand_name = "パー";
+  }
+  return hand_name;
+}
 
-// let orange = 200;
-// let apple = 120;
+// ユーザの手とJavaScriptのじゃんけんの手を比べる関数
+function winLose(user, js){
+  let winLoseStr;
 
-// if(orange < apple){
-//   alert('みかんの値段がりんごより安い');
-// } else if(orange == apple){
-//   alert('みかんとりんごが同じ値段');
-// } else{
-//   alert('みかんの値段がりんごより高い');
-// }
+  if(user == "グー"){
+    if(js == "グー"){
+      winLoseStr = "あいこ";
+    } else if(js == "チョキ"){
+      winLoseStr = "勝ち";
+    } else if(js == "パー"){
+      winLoseStr = "負け";
+    }
+  } else if(user == "チョキ"){
+    if(js == "グー"){
+      winLoseStr = "負け";
+    } else if(js == "チョキ"){
+      winLoseStr = "あいこ";
+    } else if(js == "パー"){
+      winLoseStr = "勝ち";
+    }
+  } else if(user == "パー"){
+    if(js == "グー"){
+      winLoseStr = "勝ち";
+    } else if(js == "チョキ"){
+      winLoseStr = "負け";
+    } else if(js == "パー"){
+      winLoseStr = "あいこ";
+    }
+  }
 
-
-// let max = 100;
-// let num = 1;
-// let count = 0;
-
-// while (num < max){
-//   num = num * 2;
-//   count = count + 1;
-// }
-
-// alert('2を掛け続けて' + max + 'を超えるのに必要だった回数は' + count + '回です');
-
-// let i;
-// let num = 0;
-
-// for(i = 1; i < 11; i++){
-//   num = num + i;
-// }
-
-// alert('1から10まで足し算した結果は' + num + 'です');
-
-let num1 = 5;
-let num2 = 6;
-
-alert(num1 + num2);
-alert(num1 - num2);
-alert(num1 * num2);
-alert(num1 / num2);
+  return winLoseStr;
+}
